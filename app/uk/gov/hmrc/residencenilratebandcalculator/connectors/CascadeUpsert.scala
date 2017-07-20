@@ -30,7 +30,8 @@ class CascadeUpsert {
 
   val funcMap: Map[String, (JsValue, CacheMap) => CacheMap] =
     Map(
-      Constants.typeOfTrustId -> ((v, cm) => cleanupTypeOfTrust(v, cm))
+      Constants.typeOfTrustId -> ((v, cm) => cleanupTypeOfTrust(v, cm)),
+      Constants.typeOfSettlorId -> ((v, cm) => cleanupTypeOfSettlor(v, cm))
     )
 
   private def store[A](key:String, value: A, cacheMap: CacheMap)(implicit wrts: Writes[A]) =
@@ -45,11 +46,20 @@ class CascadeUpsert {
   }
 
   private def cleanupTypeOfTrust[A](value: A, cacheMap: CacheMap)(implicit wrts: Writes[A]): CacheMap = {
-      val mapToStore = value match {
+    val mapToStore = value match {
       case JsString(Constants.company) => cacheMap copy (data = cacheMap.data.filterKeys(s => s != Constants.individualDetailsId))
       case JsString(Constants.individual) => cacheMap copy (data = cacheMap.data.filterKeys(s => s != Constants.companyDetailsId))
       case _ => cacheMap
     }
     store(Constants.typeOfTrustId, value, mapToStore)
+  }
+
+  private def cleanupTypeOfSettlor[A](value: A, cacheMap: CacheMap)(implicit wrts: Writes[A]): CacheMap = {
+    val mapToStore = value match {
+      case JsString(Constants.company) => cacheMap copy (data = cacheMap.data.filterKeys(s => s != Constants.individualSettlorId))
+      case JsString(Constants.individual) => cacheMap copy (data = cacheMap.data.filterKeys(s => s != Constants.companySettlorId))
+      case _ => cacheMap
+    }
+    store(Constants.typeOfSettlorId, value, mapToStore)
   }
 }

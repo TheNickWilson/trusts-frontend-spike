@@ -30,7 +30,8 @@ class Navigator @Inject()() {
     Map(
       Constants.typeOfTrustId -> (ua => getTypeOfTrustRoute(ua)),
       Constants.companyDetailsId -> (ua => TypeOfSettlorController.onPageLoad()),
-      Constants.individualDetailsId -> (ua => TypeOfSettlorController.onPageLoad())
+      Constants.individualDetailsId -> (ua => TypeOfSettlorController.onPageLoad()),
+      Constants.typeOfSettlorId -> (ua => getTypeOfSettlorRoute(ua))
     )
   }
 
@@ -40,10 +41,15 @@ class Navigator @Inject()() {
     case _ => PageNotFoundController.onPageLoad() // Probably want to go to a start page instead
   }
 
+  private def getTypeOfSettlorRoute(userAnswers: UserAnswers): Call = userAnswers.typeOfSettlor match {
+    case Some(Constants.company) => CompanySettlorController.onPageLoad()
+    case Some(Constants.individual) => IndividualSettlorController.onPageLoad()
+    case _ => PageNotFoundController.onPageLoad() // Probably want to go to a start page instead
+  }
+
   def nextPage(controllerId: String): UserAnswers => Call = {
     routeMap.getOrElse(controllerId, _ => PageNotFoundController.onPageLoad())
   }
 
   private def goToPageNotFound: UserAnswers => Call = _ => PageNotFoundController.onPageLoad()
-
 }

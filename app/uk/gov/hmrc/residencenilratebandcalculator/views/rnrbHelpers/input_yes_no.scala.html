@@ -22,12 +22,12 @@ labelClass: Option[String] = None
         @if(errorKey.nonEmpty){
         <span class="error-notification" id="error-message-this-input">@messages(errorKey)</span>
         }
-        <label class="block-label selection-button-radio" for="yes" data-target="@if(yesAssoc.nonEmpty){@yesAssoc}">
-            <input id="yes" type="radio" name="@{id}" value="true" @if(value.contains("true")){checked="checked"} />
+        <label class="block-label selection-button-radio" for="@{id}-yes" data-target="@if(yesAssoc.nonEmpty){@yesAssoc}">
+            <input id="@{id}-yes" type="radio" name="@{id}" value="true" @if(value.contains("true")){checked="checked"} />
             @messages("site.yes")
         </label>
-        <label class="block-label selection-button-radio" for="no" data-target="@if(noAssoc.nonEmpty){@noAssoc}">
-            <input id="no" type="radio" name="@{id}" value="false" @if(value.contains("false")){checked="checked"} />
+        <label class="block-label selection-button-radio" for="@{id}-no" data-target="@if(noAssoc.nonEmpty){@noAssoc}">
+            <input id="@{id}-no" type="radio" name="@{id}" value="false" @if(value.contains("false")){checked="checked"} />
             @messages("site.no")
         </label>
 

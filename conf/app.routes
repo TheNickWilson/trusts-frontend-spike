@@ -10,8 +10,14 @@ GET        /not-found                                   uk.gov.hmrc.residencenil
 GET         /company-details                            uk.gov.hmrc.residencenilratebandcalculator.controllers.CompanyDetailsController.onPageLoad
 POST        /company-details                            uk.gov.hmrc.residencenilratebandcalculator.controllers.CompanyDetailsController.onSubmit
 
+GET         /company-settlor                            uk.gov.hmrc.residencenilratebandcalculator.controllers.CompanySettlorController.onPageLoad
+POST        /company-settlor                            uk.gov.hmrc.residencenilratebandcalculator.controllers.CompanySettlorController.onSubmit
+
 GET         /individual-details                         uk.gov.hmrc.residencenilratebandcalculator.controllers.IndividualDetailsController.onPageLoad
 POST        /individual-details                         uk.gov.hmrc.residencenilratebandcalculator.controllers.IndividualDetailsController.onSubmit
+
+GET         /individual-settlor                         uk.gov.hmrc.residencenilratebandcalculator.controllers.IndividualSettlorController.onPageLoad
+POST        /individual-settlor                         uk.gov.hmrc.residencenilratebandcalculator.controllers.IndividualSettlorController.onSubmit
 
 GET         /type-of-settlor                            uk.gov.hmrc.residencenilratebandcalculator.controllers.TypeOfSettlorController.onPageLoad
 POST        /type-of-settlor                            uk.gov.hmrc.residencenilratebandcalculator.controllers.TypeOfSettlorController.onSubmit

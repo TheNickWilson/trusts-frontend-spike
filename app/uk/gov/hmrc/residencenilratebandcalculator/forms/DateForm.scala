@@ -39,7 +39,7 @@ object DateForm {
         case None => produceError(key, errorKeyBlank)
         case Some("") => produceError(key, errorKeyBlank)
         case Some(d) => d match {
-          case intRegex(v) if v.toInt <= upperBound => Right(v.toInt)
+          case intRegex(v) if v.toInt > 0 && v.toInt <= upperBound => Right(v.toInt)
           case _ => produceError(key, errorKeyOutOfRange)
         }
       }

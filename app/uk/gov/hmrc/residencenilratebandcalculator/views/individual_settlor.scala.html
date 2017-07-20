@@ -1,0 +1,61 @@
+@import uk.gov.hmrc.residencenilratebandcalculator.FrontendAppConfig
+@import uk.gov.hmrc.play.views.html._
+@import uk.gov.hmrc.residencenilratebandcalculator.controllers.routes._
+@import uk.gov.hmrc.residencenilratebandcalculator.utils.FormHelpers
+@import uk.gov.hmrc.residencenilratebandcalculator.Constants
+@import uk.gov.hmrc.residencenilratebandcalculator.models.IndividualSettlor
+
+@(appConfig: FrontendAppConfig, form: Option[Form[IndividualSettlor]] = None)(implicit request: Request[_], messages: Messages)
+
+@uk.gov.hmrc.residencenilratebandcalculator.views.html.main_template(
+    title = messages("individual_settlor.browser_title"),
+    appConfig = appConfig,
+    bodyClasses = None) {
+
+    @helpers.form(action = IndividualSettlorController.onSubmit(), 'autoComplete -> "off") {
+
+        @rnrbHelpers.error_summary(FormHelpers.getAllErrors(form))
+
+        @rnrbHelpers.heading("individual_settlor.title")
+
+        @rnrbHelpers.input_text(id = "firstName", name = "firstName", errorKey = FormHelpers.getErrorByKey(form, "firstName"),
+            label = messages("individual_settlor.first_name"), value = Some(FormHelpers.getValueByKey(form, "firstName")))
+
+        @rnrbHelpers.input_text(id = "middleNames", name = "middleNames", errorKey = FormHelpers.getErrorByKey(form, "middleNames"),
+            label = messages("individual_settlor.middle_names"), value = Some(FormHelpers.getValueByKey(form, "middleNames")))
+
+        @rnrbHelpers.input_text(id = "lastName", name = "lastName", errorKey = FormHelpers.getErrorByKey(form, "lastName"),
+            label = messages("individual_settlor.last_name"), value = Some(FormHelpers.getValueByKey(form, "lastName")))
+
+        @rnrbHelpers.input_date(
+            id = "dateOfBirth",
+            label = messages("individual_settlor.date_of_birth"),
+            hint = Some(messages("individual_settlor.date_of_birth.hint")),
+            errorKey = FormHelpers.getErrorByKey(form, ""),
+            dayErrorKey = FormHelpers.getErrorByKey(form, "dateOfBirth.day"),
+            monthErrorKey = FormHelpers.getErrorByKey(form, "dateOfBirth.month"),
+            yearErrorKey = FormHelpers.getErrorByKey(form, "dateOfBirth.year"),
+            valueDay = Some(FormHelpers.getValueByKey(form, "dateOfBirth.day").toString),
+            valueMonth = Some(FormHelpers.getValueByKey(form, "dateOfBirth.month").toString),
+            valueYear = Some(FormHelpers.getValueByKey(form, "dateOfBirth.year").toString)
+        )
+
+        @rnrbHelpers.input_yes_no(
+            id = "hasNino",
+            label = messages("individual_settlor.has_nino"),
+            labelClass = Some("bold"),
+            errorKey = FormHelpers.getErrorByKey(form, "hasNino"),
+            value = Some(FormHelpers.getValueByKey(form, "hasNino"))
+        )
+
+        @rnrbHelpers.input_text(id = "nino", name = "nino", errorKey = FormHelpers.getErrorByKey(form, "nino"),
+            label = messages("individual_settlor.nino"), hint = Some(messages("individual_settlor.nino.hint")), value = Some(FormHelpers.getValueByKey(form, "nino")))
+
+        @rnrbHelpers.input_text(id = "phoneNumber", name = "phoneNumber", errorKey = FormHelpers.getErrorByKey(form, "phoneNumber"),
+            label = messages("individual_settlor.phone_number"), hint = Some(messages("individual_settlor.phone_number.hint")),
+            value = Some(FormHelpers.getValueByKey(form, "phoneNumber")))
+
+        @rnrbHelpers.submit_button()
+    }
+}
+

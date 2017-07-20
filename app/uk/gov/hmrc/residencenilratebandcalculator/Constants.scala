@@ -20,7 +20,9 @@ import uk.gov.hmrc.residencenilratebandcalculator.models.RadioOption
 
 object Constants {
   val companyDetailsId = "CompanyDetails"
+  val companySettlorId = "CompanySettlor"
   val individualDetailsId = "IndividualDetails"
+  val individualSettlorId = "IndividualSettlor"
   val typeOfSettlorId = "TypeOfSettlor"
   val typeOfTrustId = "TypeOfTrust"
 
@@ -30,6 +32,14 @@ object Constants {
   val companyOrIndividualOptions = Seq(
     RadioOption("type_of_trust", company),
     RadioOption("type_of_trust", individual)
+  )
+
+  val trading = "trading"
+  val investment = "investment"
+
+  val typeOfCompanyOptions = Seq(
+    RadioOption("type_of_company", trading),
+    RadioOption("type_of_company", investment)
   )
 
   val no = "No"

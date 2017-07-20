@@ -1,0 +1,53 @@
+@import uk.gov.hmrc.residencenilratebandcalculator.FrontendAppConfig
+@import uk.gov.hmrc.play.views.html._
+@import uk.gov.hmrc.residencenilratebandcalculator.controllers.routes._
+@import uk.gov.hmrc.residencenilratebandcalculator.utils.FormHelpers
+@import uk.gov.hmrc.residencenilratebandcalculator.Constants
+@import uk.gov.hmrc.residencenilratebandcalculator.models.CompanySettlor
+
+@(appConfig: FrontendAppConfig, form: Option[Form[CompanySettlor]] = None)(implicit request: Request[_], messages: Messages)
+
+@uk.gov.hmrc.residencenilratebandcalculator.views.html.main_template(
+    title = messages("company_settlor.browser_title"),
+    appConfig = appConfig,
+    bodyClasses = None) {
+
+    @helpers.form(action = CompanySettlorController.onSubmit(), 'autoComplete -> "off") {
+
+        @rnrbHelpers.error_summary(FormHelpers.getAllErrors(form))
+
+        @rnrbHelpers.heading("company_settlor.title")
+
+        @rnrbHelpers.input_text(id = "name", name = "name", errorKey = FormHelpers.getErrorByKey(form, "name"),
+            label = messages("company_settlor.name"), value = Some(FormHelpers.getValueByKey(form, "name")))
+
+        @rnrbHelpers.input_yes_no(
+            id = "ukCompany",
+            label = messages("company_settlor.uk_company"),
+            labelClass = Some("bold"),
+            errorKey = FormHelpers.getErrorByKey(form, "ukCompany"),
+            hint = Some(messages("company_settlor.uk_company.hint")),
+            value = Some(FormHelpers.getValueByKey(form, "ukCompany"))
+        )
+
+        @rnrbHelpers.input_radio(
+            name = "typeOfCompany",
+            legend = messages("company_settlor.type_of_company"),
+            legendClass = Some("bold"),
+            errorKey = FormHelpers.getErrorByKey(form, "typeOfCompany"),
+            inputs = Constants.typeOfCompanyOptions,
+            value = Some(FormHelpers.getValueByKey[CompanySettlor](form, "typeOfCompany"))
+        )
+
+        @rnrbHelpers.input_yes_no(
+            id = "atLeastTwoYearsOld",
+            label = messages("company_settlor.at_least_two_years_old"),
+            labelClass = Some("bold"),
+            errorKey = FormHelpers.getErrorByKey(form, "atLeastTwoYearsOld"),
+            value = Some(FormHelpers.getValueByKey(form, "atLeastTwoYearsOld"))
+        )
+
+        @rnrbHelpers.submit_button()
+    }
+}
+

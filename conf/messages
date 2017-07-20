@@ -1,14 +1,23 @@
-company_details.browser_title = Comapny Details
+company_details.browser_title = Company Details
 company_details.title = Enter your company details
 company_details.name = Company name
 company_details.uk_company = Is it a UK company with a Unique Taxpayer Reference (UTR) number?
 company_details.uk_company.hint = This is a 10 digit number, like 1234567890.  You can find this on your company tax returns, statement of accounts or any other self-assessment calculations.
 company_details.contact_email = Contact email address (optional)
 
+company_settlor.browser_title = Settlor's Company Details
+company_settlor.title = Enter the settlor's company details
+company_settlor.name = Company name
+company_settlor.uk_company = Is it a UK company with a Unique Taxpayer Reference (UTR) number?
+company_settlor.uk_company.hint = This is a 10 digit number, like 1234567890.  You can find this on your company tax returns, statement of accounts or any other self-assessment calculations.
+company_settlor.type_of_company = What type of company is the settlor of the trust?
+company_settlor.at_least_two_years_old = At the date of each contribution to the trust, had the company been in existence for at least 2 years?
+
 date.day = Day
 date.month = Month
 date.year = Year
 
+error.boolean = Please give an answer
 error.invalid_company_or_individual_option = Give an answer for type of trust
 error.invalid_date = Give a correct date
 error.date.day_blank = Enter a day
@@ -25,7 +34,7 @@ error.summary.text = Check the following
 error.whole_pounds = Give a value in whole pounds only without any pence
 
 individual_details.browser_title = Your details
-individual_details.title = Enter your detials
+individual_details.title = Enter your details
 individual_details.first_name = First name
 individual_details.middle_names = Middle names (optional)
 individual_details.last_name = Last name
@@ -37,6 +46,19 @@ individual_details.nino.hint = For example, AA111111A
 individual_details.phone_number = Telephone number
 individual_details.phone_number.hint = If this is a UK landline or an overseas number, you must include the area or dialing code
 individual_details.contact_email = Contact email address (optional)
+
+individual_settlor.browser_title = Settlor's details
+individual_settlor.title = Enter the settlor's details
+individual_settlor.first_name = First name
+individual_settlor.middle_names = Middle names (optional)
+individual_settlor.last_name = Last name
+individual_settlor.date_of_birth = Date of birth
+individual_settlor.date_of_birth.hint = For example 20 03 1976
+individual_settlor.has_nino = Does the settlor have a UK National Insurance number?
+individual_settlor.nino = National Insurance number
+individual_settlor.nino.hint = For example, AA111111A
+individual_settlor.phone_number = Telephone number
+individual_settlor.phone_number.hint = If this is a UK landline or an overseas number, you must include the area or dialing code
 
 session_expired.browser_title = For your security, this service has been reset
 session_expired.title = For your security, this service has been reset
@@ -59,6 +81,9 @@ site.service_name = Register a trust for tax
 type_of_settlor.browser_title = Type of Settlor
 type_of_settlor.title = Select the type of settlor
 type_of_settlor.guidance1 = Are they a company or individual?
+
+type_of_company.trading = Trading
+type_of_company.investment = Investment
 
 type_of_trust.browser_title = Type of Trust
 type_of_trust.title = Select the type of trustee managing the trust
