@@ -1,0 +1,39 @@
+@import uk.gov.hmrc.residencenilratebandcalculator.FrontendAppConfig
+@import uk.gov.hmrc.play.views.html._
+@import uk.gov.hmrc.residencenilratebandcalculator.controllers.routes._
+@import uk.gov.hmrc.residencenilratebandcalculator.utils.FormHelpers
+@import uk.gov.hmrc.residencenilratebandcalculator.Constants
+@import uk.gov.hmrc.residencenilratebandcalculator.models.CompanyDetails
+
+@(appConfig: FrontendAppConfig, form: Option[Form[CompanyDetails]] = None)(implicit request: Request[_], messages: Messages)
+
+@uk.gov.hmrc.residencenilratebandcalculator.views.html.main_template(
+    title = messages("company_details.browser_title"),
+    appConfig = appConfig,
+    bodyClasses = None) {
+
+    @helpers.form(action = CompanyDetailsController.onSubmit(), 'autoComplete -> "off") {
+
+        @rnrbHelpers.error_summary(FormHelpers.getAllErrors(form))
+
+        @rnrbHelpers.heading("company_details.title")
+
+        @rnrbHelpers.input_text(id = "name", name = "name", errorKey = FormHelpers.getErrorByKey(form, "name"),
+            label = messages("company_details.name"), value = Some(FormHelpers.getValueByKey(form, "name")))
+
+        @rnrbHelpers.input_yes_no(
+            id = "ukCompany",
+            label = messages("company_details.uk_company"),
+            labelClass = Some("bold"),
+            errorKey = FormHelpers.getErrorByKey(form, "ukCompany"),
+            hint = Some(messages("company_details.uk_company.hint")),
+            value = Some(FormHelpers.getValueByKey(form, "ukCompany"))
+        )
+
+        @rnrbHelpers.input_text(id = "contactEmail", name = "contactEmail", errorKey = FormHelpers.getErrorByKey(form, "contactEmail"),
+            label = messages("company_details.contact_email"), value = Some(FormHelpers.getValueByKey(form, "contactEmail")))
+
+        @rnrbHelpers.submit_button()
+    }
+}
+

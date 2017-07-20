@@ -1,0 +1,38 @@
+@(
+id: String,
+label: String,
+errorKey: String,
+value: Option[String] = None,
+secondaryLabel: Option[String] = None,
+inputClass: Option[String] = None,
+hint: Option[String] = None,
+name: String = "value"
+)(implicit messages: Messages)
+
+<div class="form-field @if(errorKey != ""){form-field--error}">
+    <label class="form-label" for="@id">
+        <span class="bold">@label</span>
+        @if(hint != ""){
+        <span class="form-hint">@hint</span>
+        }
+        @if(errorKey != ""){
+        <span class="error-notification" id="error-message-this-input">@messages(errorKey)</span>
+        }
+    </label>
+    <div class="form-control-wrapper char-counter" data-char-counter>
+        <textarea
+                class="form-control form-control--full-width @inputClass"
+                id="@id"
+                name="@name"
+                value="@value"
+                aria-describedby="error-message-this-input"
+                maxLength="1200"
+                data-char-field
+                cols="30"
+                rows="20"
+        ></textarea>
+        <noscript>
+            <p class="char-counter-text flush">@messages("site.textarea.char_limit")</p>
+        </noscript>
+    </div>
+</div>

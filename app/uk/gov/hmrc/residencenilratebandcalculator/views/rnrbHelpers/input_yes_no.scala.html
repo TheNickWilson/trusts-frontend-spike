@@ -1,0 +1,35 @@
+@(
+id: String,
+label: String,
+errorKey: String,
+value: Option[String] = None,
+secondaryLabel: Option[String] = None,
+inputClass: Option[String] = None,
+hint: Option[String] = None,
+yesAssoc: Option[String] = None,
+noAssoc: Option[String] = None,
+labelClass: Option[String] = None
+)(implicit messages: Messages)
+
+
+<div class="form-field @if(errorKey.nonEmpty){form-field--error}">
+    <fieldset class="inline" id="@{id}">
+
+        <legend @if(labelClass.nonEmpty){class="@labelClass"}>@label</legend>
+        @if(hint.nonEmpty){
+        <span class="form-hint">@hint</span>
+        }
+        @if(errorKey.nonEmpty){
+        <span class="error-notification" id="error-message-this-input">@messages(errorKey)</span>
+        }
+        <label class="block-label selection-button-radio" for="yes" data-target="@if(yesAssoc.nonEmpty){@yesAssoc}">
+            <input id="yes" type="radio" name="@{id}" value="true" @if(value.contains("true")){checked="checked"} />
+            @messages("site.yes")
+        </label>
+        <label class="block-label selection-button-radio" for="no" data-target="@if(noAssoc.nonEmpty){@noAssoc}">
+            <input id="no" type="radio" name="@{id}" value="false" @if(value.contains("false")){checked="checked"} />
+            @messages("site.no")
+        </label>
+
+    </fieldset>
+</div>

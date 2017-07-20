@@ -1,0 +1,20 @@
+# microservice specific routes
+
+
+GET        /assets/*file                                controllers.Assets.versioned(path="/public", file: Asset)
+
+GET        /this-service-has-been-reset                 uk.gov.hmrc.residencenilratebandcalculator.controllers.SessionExpiredController.onPageLoad
+
+GET        /not-found                                   uk.gov.hmrc.residencenilratebandcalculator.controllers.PageNotFoundController.onPageLoad
+
+GET         /company-details                            uk.gov.hmrc.residencenilratebandcalculator.controllers.CompanyDetailsController.onPageLoad
+POST        /company-details                            uk.gov.hmrc.residencenilratebandcalculator.controllers.CompanyDetailsController.onSubmit
+
+GET         /individual-details                         uk.gov.hmrc.residencenilratebandcalculator.controllers.IndividualDetailsController.onPageLoad
+POST        /individual-details                         uk.gov.hmrc.residencenilratebandcalculator.controllers.IndividualDetailsController.onSubmit
+
+GET         /type-of-settlor                            uk.gov.hmrc.residencenilratebandcalculator.controllers.TypeOfSettlorController.onPageLoad
+POST        /type-of-settlor                            uk.gov.hmrc.residencenilratebandcalculator.controllers.TypeOfSettlorController.onSubmit
+
+GET         /type-of-trust                              uk.gov.hmrc.residencenilratebandcalculator.controllers.TypeOfTrustController.onPageLoad
+POST        /type-of-trust                              uk.gov.hmrc.residencenilratebandcalculator.controllers.TypeOfTrustController.onSubmit

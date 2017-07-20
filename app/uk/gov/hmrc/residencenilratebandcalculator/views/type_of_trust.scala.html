@@ -1,0 +1,32 @@
+@import uk.gov.hmrc.residencenilratebandcalculator.FrontendAppConfig
+@import uk.gov.hmrc.play.views.html._
+@import uk.gov.hmrc.residencenilratebandcalculator.controllers.routes._
+@import uk.gov.hmrc.residencenilratebandcalculator.utils.FormHelpers
+@import uk.gov.hmrc.residencenilratebandcalculator.Constants
+@(appConfig: FrontendAppConfig, form: Option[Form[String]] = None)(implicit request: Request[_], messages: Messages)
+
+@uk.gov.hmrc.residencenilratebandcalculator.views.html.main_template(
+    title = messages("type_of_trust.browser_title"),
+    appConfig = appConfig,
+    bodyClasses = None) {
+
+    @helpers.form(action = TypeOfTrustController.onSubmit(), 'autoComplete -> "off") {
+
+        @rnrbHelpers.error_summary(FormHelpers.getAllErrors(form))
+
+        @rnrbHelpers.heading("type_of_trust.title")
+
+        <p>@messages("type_of_trust.guidance1")</p>
+
+        @rnrbHelpers.input_radio(
+            name = "value",
+            legend = messages("type_of_trust.title"),
+            legendClass = Some("visually-hidden"),
+            errorKey = FormHelpers.getErrorByKey(form, "value"),
+            inputs = Constants.companyOrIndividualOptions,
+            value = Some(FormHelpers.getValue[String](form).toString)
+        )
+
+        @rnrbHelpers.submit_button()
+    }
+}

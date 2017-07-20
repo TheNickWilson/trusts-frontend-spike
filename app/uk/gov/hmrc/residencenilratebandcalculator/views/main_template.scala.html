@@ -1,0 +1,58 @@
+@import uk.gov.hmrc.residencenilratebandcalculator.FrontendAppConfig
+
+@(title: String,
+  appConfig: FrontendAppConfig,
+  sidebarLinks: Option[Html] = None,
+  contentHeader: Option[Html] = None,
+  bodyClasses: Option[String] = None,
+  mainClass: Option[String] = None,
+  scriptElem: Option[Html] = None)(mainContent: Html)(implicit request : Request[_], messages: Messages)
+
+@import uk.gov.hmrc.play.views.html.layouts
+
+
+@serviceInfoContent = {}
+
+@betaBanner = {
+@layouts.betaBanner(
+    userLoggedIn = false,
+    betaFeedbackUrl = appConfig.betaFeedbackUrl,
+    betaFeedbackUnauthenticatedUrl = appConfig.betaFeedbackUnauthenticatedUrl,
+    showFeedbackLinkInBetaBanner = true)
+}
+
+@sidebar = {
+    @if(sidebarLinks.isDefined) {
+        @layouts.sidebar(sidebarLinks.get, Some("sidebar"))
+    }
+}
+@if(!appConfig.fullStyle) {
+
+    @basic_template(
+        appConfig = appConfig,
+        title = title,
+        mainClass = mainClass,
+        bodyClasses = bodyClasses,
+        sidebar = sidebar,
+        contentHeader = contentHeader,
+        mainContent = layouts.article(mainContent),
+        serviceInfoContent = serviceInfoContent,
+        scriptElem = scriptElem,
+        betaBanner = betaBanner
+    )
+
+} else {
+
+    @govuk_wrapper(
+        appConfig = appConfig,
+        title = title,
+        mainClass = mainClass,
+        bodyClasses = bodyClasses,
+        sidebar = sidebar,
+        contentHeader = contentHeader,
+        mainContent = layouts.article(mainContent),
+        serviceInfoContent = serviceInfoContent,
+        scriptElem = scriptElem,
+        betaBanner = betaBanner
+    )
+}
