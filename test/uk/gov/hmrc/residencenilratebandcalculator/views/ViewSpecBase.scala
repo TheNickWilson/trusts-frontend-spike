@@ -28,9 +28,9 @@ trait ViewSpecBase extends HtmlSpec {
   val errorMessage = "error.number"
   val error = FormError(errorKey, errorMessage)
 
-  def rnrbPage[A: ClassTag](createView: (Option[Form[A]]) => HtmlFormat.Appendable,
-                            messageKeyPrefix: String,
-                            expectedGuidanceKeys: String*) = {
+  def trustsPage[A: ClassTag](createView: (Option[Form[A]]) => HtmlFormat.Appendable,
+                              messageKeyPrefix: String,
+                              expectedGuidanceKeys: String*) = {
     "behave like a standard RNRB page" when {
       "rendered" must {
         "have the correct banner title" in {
